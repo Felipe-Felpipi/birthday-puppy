@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy 19, Puppy!</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#ff7aa2;
+      --glass: rgba(255,255,255,0.06);
+      --cake-cream: linear-gradient(180deg,#fff2e6,#ffd6b3);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    body{background: radial-gradient(1200px 600px at 10% 10%, rgba(255,122,162,0.06), transparent), radial-gradient(900px 400px at 90% 90%, rgba(80,160,255,0.04), transparent), var(--bg); color:#e6eef8; display:flex; align-items:center; justify-content:center; padding:32px}
+
+    .stage{width:100%;max-width:980px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:18px;padding:28px;box-shadow:0 10px 40px rgba(2,6,23,0.6);position:relative;overflow:hidden}
+
+    header{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+    .avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#ffb8d8,#bedeff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#081126;font-size:22px;flex:0 0 64px}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:0;color:#b6c8dd}
+
+    .scene{display:flex;gap:28px;align-items:flex-end;justify-content:space-between}
+
+    /* Cake */
+    .cake-wrap{flex:1;display:flex;flex-direction:column;align-items:center}
+    .cake{width:420px;max-width:54vw;height:240px;position:relative;border-radius:20px;display:flex;align-items:center;justify-content:center}
+
+    .cake-base{width:86%;height:68%;background:var(--cake-cream);border-radius:16px;box-shadow:inset 0 -8px 20px rgba(0,0,0,0.12), 0 10px 30px rgba(0,0,0,0.45);position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .frosting{position:absolute;top:-12px;left:6%;right:6%;height:26px;border-radius:14px;background:linear-gradient(180deg,#ffdfe8,#fff2f5);filter:drop-shadow(0 6px 8px rgba(0,0,0,0.25));}
+    .cake-plate{position:absolute;left:50%;transform:translateX(-50%);bottom:-18px;width:92%;height:34px;background:linear-gradient(180deg,#111827,#0b1220);border-radius:18px}
+
+    /* candles */
+    .candles{display:flex;gap:14px;align-items:flex-end;position:relative;z-index:6}
+    .candle{width:12px;height:52px;border-radius:3px;background:linear-gradient(180deg,#fff,#ffd9d9);position:relative;box-shadow:0 4px 10px rgba(0,0,0,0.25)}
+    .candle.stripe{background:repeating-linear-gradient(180deg,#ffe9f0 0 6px,#ffd1e6 6px 12px)}
+    .wick{position:absolute;left:50%;top:-6px;width:2px;height:8px;background:#222;transform:translateX(-50%)}
+
+    /* flame SVG container */
+    .flame{width:18px;height:28px;margin-bottom:8px}
+    .flame .f{transform-origin:50% 80%;animation:flameFlicker 900ms infinite}
+    .flame .g{transform-origin:50% 80%;animation:flameFlicker 700ms infinite}
+
+    @keyframes flameFlicker{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.05)}100%{transform:translateY(0) scale(1)}}
+
+    /* balloons */
+    .balloons{position:absolute;right:22px;top:22px;display:flex;flex-direction:column;gap:12px;z-index:3}
+    .balloon{width:78px;height:106px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:linear-gradient(180deg,#ffd6ea,#ff6fa3);position:relative;display:flex;align-items:center;justify-content:center;transform-origin:center;animation:float 6s ease-in-out infinite}
+    .balloon::after{content:'';position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);width:2px;height:24px;background:#222;border-radius:2px}
+
+    .balloon.blue{background:linear-gradient(180deg,#d6eeff,#5db8ff);animation-duration:7s}
+    .balloon.green{background:linear-gradient(180deg,#e6ffd6,#7cff93);animation-duration:6.2s}
+    @keyframes float{0%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}100%{transform:translateY(0) rotate(-2deg)}}
+
+    /* controls */
+    .controls{display:flex;gap:12px;align-items:center;margin-top:20px}
+    button{background:linear-gradient(180deg,#142032,#0b1220);border:1px solid rgba(255,255,255,0.04);color:#e8f5ff;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:600}
+    button.primary{background:linear-gradient(180deg,#ff7aa2,#ff4e8a);color:#081126;box-shadow:0 8px 28px rgba(255,122,162,0.18)}
+
+    .message{margin-top:8px;color:#a9c0d9}
+
+    /* smoke (when blown) */
+    .smoke{position:absolute;top:48px;left:50%;transform:translateX(-50%);pointer-events:none}
+    .puff{width:18px;height:18px;border-radius:50%;background:rgba(200,200,200,0.18);position:absolute;opacity:0;filter:blur(6px)}
+
+    footer{position:absolute;right:18px;bottom:12px;color:#93a6c3;font-size:12px}
+
+    @media (max-width:880px){.scene{flex-direction:column-reverse;align-items:center}.balloons{position:static;flex-direction:row;gap:8px;margin-top:18px}}
+  </style>
+</head>
+<body>
+  <div class="stage" role="main">
+    <header>
+      <div class="avatar">🦊</div>
+      <div>
+        <h1>Happy 19 Years old, Puppy 🎉</h1>
+        <p class="lead">1 year of fwendship with ya (I guess it's 1 year, right? Me dumb...). Click on the buttons to blow!</p>
+      </div>
+    </header>
+
+    <div class="scene">
+      <div class="cake-wrap">
+        <div class="cake" id="cake">
+          <div class="frosting"></div>
+          <div class="cake-base" aria-hidden="false">
+            <div style="font-size:20px;font-weight:700;color:#6b2b3b;margin-bottom:6px">Happy 19</div>
+            <div style="color:#5d3b3b;opacity:0.9">Puppy ❤️</div>
+            <div class="candles" id="candles" style="margin-top:12px">
+              <!-- candles inserted by JS -->
+            </div>
+          </div>
+          <div class="cake-plate"></div>
+
+          <div class="smoke" id="smoke" aria-hidden="true"></div>
+        </div>
+
+        <div class="controls">
+          <button id="blow">Blow candles.</button>
+          <button id="reset">Light them up.</button>
+        </div>
+        <div class="message" id="msg">Happy birthday to my amazing VRC bestie! It's been such a wonderful year getting to know you and creating so many fun memories together. You're an incredible friend who always knows how to make me smile, and I'm so grateful we met.I hope your special day is filled with joy, laughter, and all the things that make you happy. May this year bring you even more amazing adventures and wonderful experiences!Here's to many more years of friendship and fun times together! 🎂🎈</div>
+      </div>
+
+      <div class="balloons" id="balloons">
+        <!-- balloons by JS -->
+      </div>
+    </div>
+
+    <footer>U smoll and stwong</footer>
+  </div>
+
+  <script>
+    // Wrap initialization in DOMContentLoaded to avoid run-before-HTML issues
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        // === CONFIG: personalize aqui ===
+        const PERSON_NAME = 'Puppy'; // nome que aparece
+        const YEARS = 19; // idade
+        const CANDLE_COUNT = 9; // visual - não precisa ser 19
+        // ================================
+
+        const h1 = document.querySelector('h1');
+        if(h1) h1.textContent = `Feliz ${YEARS} anos, ${PERSON_NAME} 🎉`;
+
+        const candlesEl = document.getElementById('candles');
+        const smokeEl = document.getElementById('smoke');
+        const balloonsEl = document.getElementById('balloons');
+
+        // safety: ensure container exists
+        if(!candlesEl || !smokeEl || !balloonsEl) {
+          console.warn('Elemento esperado não encontrado:', {candlesEl, smokeEl, balloonsEl});
+        }
+
+        // create candles
+        for(let i=0;i<CANDLE_COUNT && candlesEl;i++){
+          const wrap = document.createElement('div');
+          wrap.style.display='flex';wrap.style.flexDirection='column';wrap.style.alignItems='center';wrap.style.gap='2px';
+          const flame = document.createElementNS('http://www.w3.org/2000/svg','svg');
+          flame.setAttribute('viewBox','0 0 24 32');flame.classList.add('flame');
+          // use template string safely (no unescaped backticks inside)
+          flame.innerHTML = `
+            <defs>
+              <radialGradient id='g${i}' cx='50%' cy='60%'>
+                <stop offset='0%' stop-color='#fff7d8'/>
+                <stop offset='45%' stop-color='#ffd86a'/>
+                <stop offset='100%' stop-color='#ff6a6a'/>
+              </radialGradient>
+            </defs>
+            <g class='g'>
+              <path class='f' d='M12 2 C8 8 12 14 12 22 C12 14 16 8 12 2 Z' fill='url(#g${i})' />
+            </g>`;
+
+          const candle = document.createElement('div');
+          candle.className='candle'+(i%2? ' stripe':'');
+          const wick = document.createElement('div');
+          wick.className='wick';
+          candle.appendChild(wick);
+
+          wrap.appendChild(flame);
+          wrap.appendChild(candle);
+          candlesEl.appendChild(wrap);
+        }
+
+        // create balloons
+        const balloonColors = ['','blue','green'];
+        for(let i=0;i<3 && balloonsEl;i++){
+          const b = document.createElement('div');
+          b.className='balloon '+balloonColors[i];
+          b.style.transform = `translateY(${Math.random()*10}px) rotate(${(Math.random()*8-4)}deg)`;
+          b.style.animationDelay = `${Math.random()*2}s`;
+          b.style.opacity = 0.95;
+          balloonsEl.appendChild(b);
+        }
+
+        // flames active state
+        let lit = true;
+        function setFlames(on){
+          const flames = document.querySelectorAll('.flame .f');
+          flames.forEach((f,idx)=>{
+            if(on){ f.style.opacity=1; f.style.transform='scale(1)'; }
+            else{ f.style.opacity=0; f.style.transform='scale(0.2) translateY(-6px)'; }
+          });
+          lit = on;
+          if(smokeEl) smokeEl.setAttribute('aria-hidden', String(!on));
+        }
+
+        setFlames(true);
+
+        // puff smoke generator
+        function emitSmoke(){
+          if(!smokeEl) return;
+          for(let i=0;i<6;i++){
+            const p = document.createElement('div');
+            p.className='puff';
+            p.style.left = `${50 + (Math.random()*60-30)}%`;
+            p.style.top = `${30 + Math.random()*12}px`;
+            smokeEl.appendChild(p);
+            // animate
+            const dx = (Math.random()*40-20);
+            // ensure numeric interpolation inside template strings
+            const dx1 = dx;
+            const dx2 = dx * 1.8;
+            const dx3 = dx * 2.8;
+            p.animate([
+              {transform:`translate(${dx1}px,0) scale(0.6)`, opacity:0.8, filter:'blur(6px)'},
+              {transform:`translate(${dx2}px,-24px) scale(1.2)`, opacity:0.3, filter:'blur(8px)'},
+              {transform:`translate(${dx3}px,-48px) scale(1.6)`, opacity:0}
+            ],{duration:1200+Math.random()*600,easing:'cubic-bezier(.2,.6,.2,1)'});
+            setTimeout(()=>p.remove(),1700+Math.random()*800);
+          }
+        }
+
+        // simple synthesized blow sound (white noise burst)
+        function blowSound(){
+          try{
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if(!AudioCtx) return;
+            const ctx = new AudioCtx();
+            const bufferSizeFloat = ctx.sampleRate * 0.15;
+            const bufferSize = Math.max(1, Math.floor(bufferSizeFloat)); // ensure integer
+            const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+            const data = buffer.getChannelData(0);
+            for(let i=0;i<bufferSize;i++) data[i] = (Math.random()*2-1) * (1 - (i/bufferSize));
+            const src = ctx.createBufferSource();
+            src.buffer = buffer;
+            const gain = ctx.createGain(); gain.gain.value = 0.7;
+            src.connect(gain); gain.connect(ctx.destination);
+            src.start();
+            setTimeout(()=>{ try{ ctx.close(); }catch(e){} },300);
+          }catch(e){ console.warn('Audio error', e); }
+        }
+        // Buttons
+        const blowBtn = document.getElementById('blow');
+        const resetBtn = document.getElementById('reset');
+
+        if(blowBtn){
+          blowBtn.addEventListener('click', ()=>{
+            if(!lit) return;
+            setFlames(false);
+            emitSmoke();
+            blowSound();
+            const msg = document.getElementById('msg'); if(msg) msg.textContent = 'U wish gonna become true! ✨';
+            confettiBurst();
+          });
+        } else {
+          console.warn('Botão "blow" não encontrado.');
+        }
+
+        if(resetBtn){
+          resetBtn.addEventListener('click', ()=>{
+            setFlames(true);
+            const msg = document.getElementById('msg'); if(msg) msg.textContent = 'Candles lighted again! Another wish?!';
+          });
+        }
+
+        // bonus: allow "soprar" by pressing space quickly
+        document.addEventListener('keydown', (e)=>{
+          if(e.code==='Space' && blowBtn){ blowBtn.click(); }
+        });
+
+        // tiny confetti burst after blow
+        function confettiBurst(){
+          const count = 26;
+          const stage = document.querySelector('.stage') || document.body;
+          for(let i=0;i<count;i++){
+            const el = document.createElement('div');
+            el.style.position='absolute'; el.style.left = `${50 + (Math.random()*80-40)}%`;
+            el.style.top = `${40 + (Math.random()*40-20)}px`;
+            el.style.width = '8px'; el.style.height='12px'; el.style.background = `hsl(${Math.random()*60+250},70%,60%)`;
+            el.style.transform = `rotate(${Math.random()*360}deg)`;
+            el.style.borderRadius='2px'; el.style.pointerEvents='none'; el.style.zIndex=9999;
+            stage.appendChild(el);
+            el.animate([
+              {transform:'translateY(0) rotate(0deg)', opacity:1},
+              {transform:`translateY(${120+Math.random()*120}px) rotate(${Math.random()*720}deg)`, opacity:0}
+            ],{duration:1200+Math.random()*800,easing:'cubic-bezier(.2,.6,.2,1)'});
+            setTimeout(()=>el.remove(),1100);
+          }
+        }
+
+        // accessibility: allow share via URL param ?name=...
+        (function readParams(){
+          try{
+            const params = new URLSearchParams(location.search);
+            if(params.has('name')){
+              const n = params.get('name');
+              if(h1) h1.textContent = `Feliz ${YEARS} anos, ${n} 🎉`;
+            }
+          }catch(e){/* ignore */}
+        })();
+
+      } catch(err) {
+        // show in-console error to help debugging
+        console.error('Erro na inicialização do site de aniversário:', err);
+      }
+    });
+  </script>
+</body>
+</html>
