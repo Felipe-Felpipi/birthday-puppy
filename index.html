@@ -123,7 +123,7 @@
         // ================================
 
         const h1 = document.querySelector('h1');
-        if(h1) h1.textContent = `Feliz ${YEARS} anos, ${PERSON_NAME} 🎉`;
+        if(h1) h1.textContent = `Happy ${YEARS} years old, ${PERSON_NAME} 🎉`;
 
         const candlesEl = document.getElementById('candles');
         const smokeEl = document.getElementById('smoke');
@@ -287,7 +287,7 @@
             const params = new URLSearchParams(location.search);
             if(params.has('name')){
               const n = params.get('name');
-              if(h1) h1.textContent = `Feliz ${YEARS} anos, ${n} 🎉`;
+              if(h1) h1.textContent = `Happy ${YEARS} years old, ${n} 🎉`;
             }
           }catch(e){/* ignore */}
         })();
